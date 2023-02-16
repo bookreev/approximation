@@ -7,20 +7,27 @@ namespace Bookreev\Approximation\Entity;
  */
 class LeastSquare
 {
-    private array $result;
+    private array $x;
+    private array $y;
     private float $a;
     private float $b;
 
-    public function __construct(array $result, float $a, float $b)
+    public function __construct(array $x, array $y, float $a, float $b)
     {
-        $this->result = $result;
+        $this->x = $x;
+        $this->y = $y;
         $this->a = $a;
         $this->b = $b;
     }
 
-    public function getResult(): array
+    public function getX(): array
     {
-        return $this->result;
+        return $this->x;
+    }
+
+    public function getY(): array
+    {
+        return $this->y;
     }
 
     public function getA(): float

@@ -22,9 +22,9 @@ class LeastSquareService
 
         $result = [];
         foreach ($x as $v){
-            $result[$v] = $a * $v + $b;
+            $result[] = $a * $v + $b;
         }
 
-        return new LeastSquare($result, $a, $b);
+        return new LeastSquare($x, $result, $a, $b);
     }
 }
