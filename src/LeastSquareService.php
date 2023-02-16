@@ -6,25 +6,23 @@ use Bookreev\Approximation\Entity\LeastSquare;
 
 class LeastSquareService
 {
-    public function resolve(array $params): LeastSquare
+    public function resolve(array $x, array $y): LeastSquare
     {
-        $xData = array_keys($params);
-        $yData = array_values($params);
         $sumXY = $sumX = $sumY = $sumX2 = 0;
-        $n = count($params);
+        $n = count($x);
         for ($i = 0; $i < $n; $i++) {
-            $sumXY += $xData[$i] * $yData[$i];
-            $sumX += $xData[$i];
-            $sumY += $yData[$i];
-            $sumX2 += pow($xData[$i], 2);
+            $sumXY += $x[$i] * $y[$i];
+            $sumX += $x[$i];
+            $sumY += $y[$i];
+            $sumX2 += pow($x[$i], 2);
         }
 
         $a = ($n * $sumXY - $sumX * $sumY) / ($n * $sumX2 - pow($sumX, 2));
         $b = ($sumY - $a * $sumX) / $n;
 
         $result = [];
-        foreach ($xData as $x){
-            $result[$x] = $a * $x + $b;
+        foreach ($x as $v){
+            $result[$v] = $a * $v + $b;
         }
 
         return new LeastSquare($result, $a, $b);
